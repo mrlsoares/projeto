@@ -4,6 +4,7 @@ namespace Projeto\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Projeto\Client;
 use Projeto\Http\Requests;
 use Projeto\Http\Controllers\Controller;
 
@@ -19,15 +20,7 @@ class ClientController extends Controller
         return \Projeto\Client::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +30,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Client::create($request->all());
     }
 
     /**
