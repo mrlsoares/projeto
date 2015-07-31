@@ -4,10 +4,7 @@ namespace Projeto\Http\Controllers;
 
 use Projeto\Repositories\ClientRepository;
 use Illuminate\Http\Request;
-
-
-
-
+use Projeto\Services\ClientService;
 
 
 class ClientController extends Controller
@@ -17,13 +14,19 @@ class ClientController extends Controller
      */
     private $repository;
     /**
+     * @var ClientService
+     */
+    private $service;
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function __construct(ClientRepository $repository)
+    public function __construct(ClientRepository $repository,ClientService $service)
     {
         $this->repository=$repository;
+        $this->service = $service;
     }
     public function index()
     {
@@ -41,7 +44,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->repository->create($request->all());
+        return $this->service->create($request->all());
     }
 
     /**
@@ -66,7 +69,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->repository->find($id)->update($request->all());
+        return $this->service->update($request->all(),$id);
     }
 
     /**
@@ -77,7 +80,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $this->repository->find($id)->delete;
+        $this->repository->delete($id);
 
     }
 }
