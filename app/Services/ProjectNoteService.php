@@ -7,26 +7,23 @@
  */
 
 namespace Projeto\Services;
-
-
-
-
 use Prettus\Validator\Exceptions\ValidatorException;
-use Projeto\Repositories\ClientRepository;
-use Projeto\Validators\ClientValidator;
+use Projeto\Repositories\ProjectNoteRepository;
+use Projeto\Repositories\ProjectRepository;
+use Projeto\Validators\ProjectNoteValidator;
 
-class ClientService
+class ProjectNoteService
 {
 	/**
-	 * @var ClientRepository
+	 * @var ProjectNoteRepository
 	 */
 	protected $repository;
 	/**
-	 * @var ClientValidator
+	 * @var ProjectNoteValidator
 	 */
 	private $validator;
 
-	public function __construct(ClientRepository $repository, ClientValidator $validator)
+	public function __construct(ProjectNoteRepository $repository, ProjectNoteValidator $validator)
 	{
 		$this->repository=$repository;
 		$this->validator = $validator;
@@ -67,5 +64,6 @@ class ClientService
 			];
 		}
 	}
+
 
 }

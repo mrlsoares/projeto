@@ -2,19 +2,21 @@
 
 namespace Projeto\Http\Controllers;
 
-use Projeto\Repositories\ClientRepository;
+
 use Illuminate\Http\Request;
-use Projeto\Services\ClientService;
+use Projeto\Repositories\ProjectRepository;
+
+use Projeto\Services\ProjectService;
 
 
-class ClientController extends Controller
+class ProjectController extends Controller
 {
     /**
-     * @var ClientRepository
+     * @var ProjectRepository
      */
     private $repository;
     /**
-     * @var ClientService
+     * @var ProjectService
      */
     private $service;
 
@@ -23,7 +25,7 @@ class ClientController extends Controller
      *
      * @return Response
      */
-    public function __construct(ClientRepository $repository,ClientService $service)
+    public function __construct(ProjectRepository $repository,ProjectService $service)
     {
         $this->repository=$repository;
         $this->service = $service;

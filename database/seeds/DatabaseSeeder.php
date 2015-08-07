@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+    use Projeto\Entities\Project;
 
-class DatabaseSeeder extends Seeder
+    class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +16,10 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
 
-        // $this->call(UserTableSeeder::class);
-    $this->call(ClientTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+        $this->call(ClientTableSeeder::class);
+        $this->call(ProjectTableSeeder::class);
+        $this->call(ProjectNoteTableSeeder::class);
         Model::reguard();
     }
 }
