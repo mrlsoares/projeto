@@ -17,23 +17,41 @@
     Route::get('/', function () {
     return view('welcome');
 });
+
+
     Route::post('oauth/access_token',function(){
         return Response::json(Authorizer::issueAccessToken());
     });
-    Route::get('client',['middleware' => 'oauth', 'uses'=>'ClientController@index']);
-    Route::post('/client', 'ClientController@store');
-    Route::get('/client/{id}', 'ClientController@show');
-    Route::put('/client/{id}', 'ClientController@update');
-    Route::delete('/client/{id}', 'ClientController@destroy');
 
-    Route::get('/project', 'ProjectController@index');
-    Route::post('/project', 'ProjectController@store');
-    Route::get('/project/{id}', 'ProjectController@show');
-    Route::put('/project/{id}', 'ProjectController@update');
-    Route::delete('/project/{id}', 'ProjectController@destroy');
 
-    Route::get('/project/{id}/note', 'ProjectNoteController@index');
-    Route::post('/project/{id}/note', 'ProjectNoteController@store');
-    Route::get('/project/{id}/note/{noteId}', 'ProjectNoteController@show');
-    Route::put('/project/note/{id}', 'ProjectNoteController@update');
-    Route::delete('/project/note/{id}', 'ProjectNoteController@destroy');
+    Route::group(['middleware' => 'oauth'],function(){
+
+        Route::resource('client','ClientController',['except'=>['edit','create']]);
+/*
+        Route::group(['middleware' => 'check-project-owner'],function(){
+            Route::resource('project','ProjectController',['except'=>['edit','create']]);
+        });*/
+        Route::resource('project','ProjectController',['except'=>['edit','create']]);
+
+       // Route::resource('client','ClientController',['except'=>['edit','create']]);
+
+     /*   Route::get('client',['middleware' => 'oauth', 'uses'=>'ClientController@index']);
+        Route::post('/client', 'ClientController@store');
+        Route::get('/client/{id}', 'ClientController@show');
+        Route::put('/client/{id}', 'ClientController@update');
+        Route::delete('/client/{id}', 'ClientController@destroy');*/
+
+        Route::group(['prefix' => 'project'],function()
+        {
+           // Route::resource('','ProjectController',['except'=>['edit','create']]);
+
+            Route::get('{id}/note', 'ProjectNoteController@index');
+            Route::post('{id}/note', 'ProjectNoteController@store');
+            Route::get('{id}/note/{noteId}', 'ProjectNoteController@show');
+            Route::put('note/{id}', 'ProjectNoteController@update');
+            Route::delete('note/{id}', 'ProjectNoteController@destroy');
+        });
+
+
+
+    });

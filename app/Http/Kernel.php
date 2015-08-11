@@ -33,6 +33,7 @@ class Kernel extends HttpKernel
         'csrf'=>   \Projeto\Http\Middleware\VerifyCsrfToken::class,
         'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
         'oauth-owner' => \LucaDegasperi\OAuth2Server\Middleware\OAuthOwnerMiddleware::class,
-        'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class
+        'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
+         'check-project-owner' => \Projeto\Http\Middleware\CheckProjectOwner::class
     ];
 }
