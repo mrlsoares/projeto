@@ -7,6 +7,7 @@
  */
 
 namespace Projeto\Presenters;
+
 use Prettus\Repository\Presenter\FractalPresenter;
 use Projeto\Transformers\ProjectTransformer;
 

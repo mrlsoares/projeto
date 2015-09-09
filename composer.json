@@ -11,7 +11,7 @@
         "prettus/l5-repository": "^2.1",
         "prettus/laravel-validation": "1.1.*",
         "lucadegasperi/oauth2-server-laravel": "5.0.*@dev",
-        "filp/whoops": "^1.1",
+        "filp/whoops": "~1.1",
         "league/fractal": "^0.12.0"
     },
     "require-dev": {

@@ -20,6 +20,8 @@
 
 
     Route::post('oauth/access_token',function(){
+        //$pessoa= array('nome'=>'Marcos','sobrenome'=>'soares');
+        //return $pessoa;
         return Response::json(Authorizer::issueAccessToken());
     });
 
@@ -50,6 +52,7 @@
             Route::get('{id}/note/{noteId}', 'ProjectNoteController@show');
             Route::put('note/{id}', 'ProjectNoteController@update');
             Route::delete('note/{id}', 'ProjectNoteController@destroy');
+            Route::post('{id}/file', 'ProjectFileController@store');
         });
 
 

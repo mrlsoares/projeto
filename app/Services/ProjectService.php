@@ -9,13 +9,17 @@
 namespace Projeto\Services;
 
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
 
+use Illuminate\Filesystem\Filesystem;
 
 use Prettus\Validator\Exceptions\ValidatorException;
 
 use Projeto\Repositories\ProjectRepository;
-
 use Projeto\Validators\ProjectValidator;
+
+
 
 class ProjectService
 {
@@ -27,11 +31,21 @@ class ProjectService
 	 * @var ProjectValidator
 	 */
 	private $validator;
+	/**
+	 * @var Filesystem
+	 */
+	private $filesystem;
+	/**
+	 * @var Storage
+	 */
+	private $storage;
 
-	public function __construct(ProjectRepository $repository, ProjectValidator $validator)
+	public function __construct(ProjectRepository $repository, ProjectValidator $validator,Filesystem $filesystem,Storage $storage )
 	{
 		$this->repository=$repository;
 		$this->validator = $validator;
+		$this->filesystem = $filesystem;
+		$this->storage = $storage;
 	}
 	public function create(array $data)
 	{
@@ -68,6 +82,12 @@ class ProjectService
 					'message'=>$e->getMessageBag()
 			];
 		}
+	}
+	public function createFile(array $data)
+	{
+		$project = $this->repository->skipPresenter()->find($data['project_id']);
+		$projectfile=$project->files()->create($data);
+		$this->storage->put($projectfile->id.'.'.$data['extension'],$this->filesystem->get($data['file']));
 	}
 
 
