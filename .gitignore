@@ -4,3 +4,4 @@
 Homestead.yaml
 .env
 public_html
+/resources/bower_components
