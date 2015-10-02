@@ -60,7 +60,7 @@ gulp.task('copy-scripts',function(){
 gulp.task('clear-build-folder',function(){
     clean.sync(config.build_path);
 });
-gulp.task('wacth-dev',['clear-build-folder'],function(){
+gulp.task('watch-dev',['clear-build-folder'],function(){
  liveReload.listen();
  gulp.start('copy-styles','copy-scripts');
  gulp.watch(config.assets_path +'/**',['copy-styles','copy-scripts'])
