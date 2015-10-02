@@ -1,12 +1,12 @@
 angular.module('app.controllers')
-.controller('loginController',['$scope',function($scope){
+.controller('LoginController',['$scope',function($scope){
     $scope.user= {
         username: '',
         password: ''
-    }
+    };
     $scope.login=function()
     {
 
-    }
+    };
 
     }]);
