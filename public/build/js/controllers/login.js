@@ -6,7 +6,7 @@ angular.module('app.controllers')
     };
     $scope.login=function()
     {
-        console.log($scope.user)
+        //console.log($scope.user);
         OAuth.getAccessToken($scope.user).then(
             function () {
                 $location.path('home');

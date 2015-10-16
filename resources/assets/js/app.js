@@ -16,8 +16,8 @@ app.config(['$routeProvider','OAuthProvider',function($routeProvider,OAuthProvid
         });
 
     OAuthProvider.configure({
-        baseUrl: 'https://localhost:8000',
-        clientId: 'app',
+        baseUrl: 'http://localhost:8000',
+        clientId: 'appid1',
         clientSecret: 'secret', // optional
         grantPath: 'oauth/access_token',
        // revokePath: '/oauth2/revoke'
