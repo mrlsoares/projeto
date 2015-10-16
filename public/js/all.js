@@ -418,11 +418,11 @@ var app = angular.module('app',['ngRoute','app.controllers']);
 
 angular.module('app.controllers',[]);
 
-app.config(function($routeProvader)
+app.config(function($routeProvider)
 {
 
-    $routeProvader.
-        when('/login',{
+    $routeProvider
+        .when('/login',{
                 templateUrl:'build/views/login.html',
                 controller:'LoginController'
     })
@@ -433,21 +433,21 @@ app.config(function($routeProvader)
 })
 
 angular.module('app.controllers')
-    .controller('homeController',['$scope',function($scope){
+    .controller('HomeController',['$scope',function($scope){
 
 
     }]);
 
 angular.module('app.controllers')
-.controller('loginController',['$scope',function($scope){
+.controller('LoginController',['$scope',function($scope){
     $scope.user= {
         username: '',
         password: ''
-    }
+    };
     $scope.login=function()
     {
 
-    }
+    };
 
     }]);
 
