@@ -4,6 +4,10 @@ angular.module('app.controllers')
         username: '',
         password: ''
     };
+    $scope.error={
+        message:'',
+        error:false
+    }
     $scope.login=function()
     {
 
@@ -14,8 +18,10 @@ angular.module('app.controllers')
                 function () {
                     $location.path('home');
                 },
-                function(){
-                    alert('Login Inválido')
+                function(data){
+                   //alert('Login Inválido')
+                    $scope.error.error=true;
+                    $scope.error.message=data.data.error_description;
                 }
             );
         }
