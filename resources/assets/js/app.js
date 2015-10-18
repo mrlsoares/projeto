@@ -1,26 +1,52 @@
-var app = angular.module('app',['ngRoute','angular-oauth2','app.controllers']);
+var app = angular.module('app',['ngRoute','angular-oauth2','app.controllers','app.services']);
 
 angular.module('app.controllers',['ngMessages','angular-oauth2']);
+angular.module('app.services',['ngResource']);
+app.provider('appConfig',function(){
+    var config={
+        baseUrl: 'http://localhost:8000'
+    }
+    return {
+        config:config,
+        $get:function()
+        {
+            return config;
+        }
+    }
 
-app.config(['$routeProvider','OAuthProvider',function($routeProvider,OAuthProvider)
+});
+app.config([
+    '$routeProvider','OAuthProvider','OAuthTokenProvider','appConfigProvider',
+    function($routeProvider,OAuthProvider,OAuthTokenProvider,appConfigProvider)
 {
 
     $routeProvider
         .when('/login',{
                 templateUrl:'build/views/login.html',
                 controller:'LoginController'
-    })
+         })
+
         .when('/home',{
             templateUrl:'build/views/home.html',
             controller:'HomeController'
+        })
+        .when('/clients',{
+            templateUrl:'build/views/client/list.html',
+            controller:'ClientListController'
         });
 
     OAuthProvider.configure({
-        baseUrl: 'http://localhost:8000',
+        baseUrl: appConfigProvider.config.baseUrl,
         clientId: 'appid1',
         clientSecret: 'secret', // optional
         grantPath: 'oauth/access_token',
        // revokePath: '/oauth2/revoke'
+    });
+    OAuthTokenProvider.configure({
+        name:'token',
+        options:{
+            secure:false
+        }
     });
 }]);
 app.run(['$rootScope', '$window', 'OAuth', function($rootScope, $window, OAuth) {

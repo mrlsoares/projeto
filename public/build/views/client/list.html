@@ -1,0 +1,30 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Lista de Clientes</div>
+                <div class="panel-body">
+                   <table class="table table-bordered table-responsive">
+                       <thead>
+                           <tr>
+                                <th>Nome</th>
+                               <th>Responsável</th>
+                               <th>Email</th>
+                               <th>Fone</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                            <tr ng-repeat="o in clients">
+                                <td>{{o.name}}</td>
+                                <td>{{o.responsable}}</td>
+                                <td>{{o.email}}</td>
+                                <td>{{o.phone}}</td>
+                            </tr>
+                       </tbody>
+                   </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
