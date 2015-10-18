@@ -6,15 +6,20 @@ angular.module('app.controllers')
     };
     $scope.login=function()
     {
+
         //console.log($scope.user);
-        OAuth.getAccessToken($scope.user).then(
-            function () {
-                $location.path('home');
-            },
-            function(){
-                alert('Login Inválido')
-            }
-        );
+        if($scope.form.$valid)
+        {
+            OAuth.getAccessToken($scope.user).then(
+                function () {
+                    $location.path('home');
+                },
+                function(){
+                    alert('Login Inválido')
+                }
+            );
+        }
+
     };
 
     }]);
