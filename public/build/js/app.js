@@ -34,9 +34,14 @@ app.config([
             templateUrl:'build/views/client/list.html',
             controller:'ClientListController'
         })
+
         .when('/clients/new',{
             templateUrl:'build/views/client/new.html',
             controller:'ClientNewController'
+        })
+        .when('/clients/:id/edit',{
+            templateUrl:'build/views/client/edit.html',
+            controller:'ClientEditController'
         });
 
     OAuthProvider.configure({
