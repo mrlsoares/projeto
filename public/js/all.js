@@ -572,6 +572,18 @@ app.run(['$rootScope', '$window', 'OAuth', function($rootScope, $window, OAuth) 
         return $window.location.href = '/login?error_reason=' + rejection.data.error;
     });
 }]);
+/**
+ * Created by mrlsoares on 18/10/15.
+ */
+angular.module('app.services')
+.service('Client',['$resource','appConfig',function($resource,appConfig){
+        return $resource(appConfig.baseUrl+'/client/:id',{id:'@id'},{
+            update:{
+                method:'PUT'
+            }
+        });
+
+    }])
 angular.module('app.controllers')
     .controller('HomeController',['$scope',function($scope){
 
@@ -610,18 +622,6 @@ angular.module('app.controllers')
 
     }]);
 
-/**
- * Created by mrlsoares on 18/10/15.
- */
-angular.module('app.services')
-.service('Client',['$resource','appConfig',function($resource,appConfig){
-        return $resource(appConfig.baseUrl+'/client/:id',{id:'@id'},{
-            update:{
-                method:'PUT'
-            }
-        });
-
-    }])
 angular.module('app.controllers')
     .controller('ClientEditController',
     ['$scope','$location','$routeParams','Client',

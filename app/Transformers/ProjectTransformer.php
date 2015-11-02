@@ -19,7 +19,6 @@ class ProjectTransformer  extends  TransformerAbstract
 			'projec_id'=>$project->id,
 			'client_id'=>$project->client_id,
 			'owner_id'=>$project->owner_id,
-
 			'name'=>$project->name,
 			'description'=>$project->description,
 			'progress'=>$project->progress,

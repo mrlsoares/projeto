@@ -9,8 +9,10 @@
 namespace Projeto\Repositories;
 
 
+use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Projeto\Entities\Client;
+use Projeto\Presenters\ClientPresenters;
 
 class ClientRepositoryEloquent extends BaseRepository implements ClientRepository
 {
@@ -23,6 +25,14 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
 	public function model()
 	{
 		return Client::class;
+	}
+    public function boot()
+    {
+        $this->pushCriteria( app(RequestCriteria::class) );
+    }
+	public function presenter()
+	{
+		return ClientPresenters::class;
 	}
 
 }
