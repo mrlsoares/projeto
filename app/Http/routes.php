@@ -50,11 +50,11 @@
             Route::get('{id}/note', 'ProjectNoteController@index');
             Route::post('{id}/note', 'ProjectNoteController@store');
             Route::get('{id}/note/{noteId}', 'ProjectNoteController@show');
-            Route::put('note/{id}', 'ProjectNoteController@update');
+            Route::put('{id}/note/{idNote}', 'ProjectNoteController@update');
             Route::delete('note/{id}', 'ProjectNoteController@destroy');
             Route::post('{id}/file', 'ProjectFileController@store');
         });
 
-
+        Route::get('user/authenticated', 'UserController@authenticated');
 
     });

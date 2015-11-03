@@ -57,9 +57,14 @@ class ProjectNoteController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($id,$noteId)
     {
-        return $this->repository->find($id);
+        $result=$this->repository->findWhere(['project_id'=>$id,'id'=>$noteId]);
+        if(isset($result['data']) &&count($result['data']==1))
+        {
+            $result=['data'=>$result['data'][0]];
+        }
+        return $result;
     }
 
 

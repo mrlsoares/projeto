@@ -5,6 +5,7 @@ namespace Projeto\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Projeto\Entities\ProjectNote;
+use Projeto\Presenters\ProjectNotePresenters;
 
 /**
  * Class ProjectNoteRepositoryEloquent
@@ -28,6 +29,10 @@ class ProjectNoteRepositoryEloquent extends BaseRepository implements ProjectNot
     public function boot()
     {
         $this->pushCriteria( app(RequestCriteria::class) );
+    }
+    public function presenter()
+    {
+        return ProjectNotePresenters::class;
     }
 
 }

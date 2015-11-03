@@ -102,6 +102,7 @@
 	<!-- Services-->
 	<script src="{{asset('build/js/services/client.js')}}"></script>
     <script src="{{asset('build/js/services/projectNote.js')}}"></script>
+    <script src="{{asset('build/js/services/user.js')}}"></script>
 
 
 
