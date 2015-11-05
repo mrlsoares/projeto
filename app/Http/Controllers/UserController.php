@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 use Projeto\Http\Requests;
 use Projeto\Http\Controllers\Controller;
+use Projeto\Repositories\UserRepository;
+
 
 class UserController extends Controller
 {
@@ -17,7 +19,7 @@ class UserController extends Controller
     public function authenticated()
     {
         $id=Authorizer::getResourceOwnerId();
-       return  $this->userRepository->find($id);
+       return  $this->repository->find($id);
     }
     /**
      * Display a listing of the resource.

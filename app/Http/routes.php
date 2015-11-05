@@ -55,6 +55,7 @@
             Route::post('{id}/file', 'ProjectFileController@store');
         });
 
-        Route::get('user/authenticated', 'UserController@authenticated');
+        Route::get('/user/authenticated', 'UserController@authenticated');
 
     });
+
