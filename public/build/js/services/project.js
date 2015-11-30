@@ -13,8 +13,6 @@ angular.module('app.services')
                         if(angular.isObject(data) && data.hasOwnProperty('due_date'))
                         {
                             data.due_date=$filter('date')(data.due_date,'yyyy-MM-dd');
-                          //  console.log((data.due_date)
-
                             return $httpParamSerializer(data);
                         }
 
