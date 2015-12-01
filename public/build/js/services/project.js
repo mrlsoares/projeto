@@ -10,7 +10,7 @@ angular.module('app.services')
                 {
                     var o = angular.copy(data);
                     o.due_date=$filter('date')(data.due_date,'yyyy-MM-dd');
-                    return $httpParamSerializer(o);
+                    return appConfig.utils.tranformRequest(o);
                 }
 
                 return data;
