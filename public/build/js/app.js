@@ -15,7 +15,7 @@ app.provider('appConfig',function(){
             ]
         },
         utils:{
-            transfomrResponse:function(data,headers)
+            transformResponse:function(data,headers)
             {
                 var headersGetter =headers();
                 if(headersGetter['content-type']=='application/json' || headersGetter['content-type']=='text/json')
@@ -48,7 +48,7 @@ app.config([
     $httpProvider.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded;charset=utf-8;';
     $httpProvider.defaults.headers.put['Content-Type'] ='application/x-www-form-urlencoded;charset=utf-8;';
 
-    $httpProvider.defaults.transformResponse=appConfigProvider.config.utils.transfomrResponse;
+    $httpProvider.defaults.transformResponse=appConfigProvider.config.utils.transformResponse;
     $routeProvider
         .when('/login',{
                 templateUrl:'build/views/login.html',
