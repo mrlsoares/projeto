@@ -8,8 +8,9 @@ angular.module('app.services')
             {
                 if(angular.isObject(data) && data.hasOwnProperty('due_date'))
                 {
-                    data.due_date=$filter('date')(data.due_date,'yyyy-MM-dd');
-                    return $httpParamSerializer(data);
+                    var o = angular.copy(data);
+                    o.due_date=$filter('date')(data.due_date,'yyyy-MM-dd');
+                    return $httpParamSerializer(o);
                 }
 
                 return data;
@@ -30,9 +31,10 @@ angular.module('app.services')
 
                         if(angular.isObject(o) && o.hasOwnProperty('due_date'))
                         {
-                            var arrayDate= o.due_date.split('-')
-                            o.due_date= new Date(arrayDate[0],arrayDate[1],arrayDate[2]);
-                            console.log(o);
+                            var arrayDate= o.due_date.split('-');
+                                month=parseInt(arrayDate[1])-1;
+                            o.due_date= new Date(arrayDate[0],month,arrayDate[2]);
+                            //console.log(o);
                         }
                         //console.log(o);
                         return o;
