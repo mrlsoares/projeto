@@ -32,9 +32,11 @@ class ProjectNoteController extends Controller
         $this->repository=$repository;
         $this->service = $service;
     }
-    public function index()
+    public function index($id)
     {
-       return  $this->repository->all();
+       //return  $this->repository->all();
+       return $this->repository->findWhere(['project_id'=>$id]);
+         //return $result;
 
     }
 

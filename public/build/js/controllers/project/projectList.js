@@ -4,6 +4,6 @@ angular.module('app.controllers')
         function($scope,$routeParams,Project){
 
         $scope.projects=Project.query();
-        // console.log($scope.projectNotes);
+         console.log($scope.projects);
         //    console.log($routeParams.id);
     }]);
