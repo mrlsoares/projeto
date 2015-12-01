@@ -13,6 +13,23 @@ app.provider('appConfig',function(){
                 {value:2,label:'Iniciado'},
                 {value:3,label:'Concluído'}
             ]
+        },
+        utils:{
+            transfomrResponse:function(data,headers)
+            {
+                var headersGetter =headers();
+                if(headersGetter['content-type']=='application/json' || headersGetter['content-type']=='text/json')
+                {
+                    var dataJson=JSON.parse(data);
+                    if(dataJson.hasOwnProperty('data'))
+                    {
+                        dataJson= dataJson.data;
+                    }
+
+                    return dataJson;
+                }
+                return data;
+            }
         }
     }
     return {
@@ -31,21 +48,7 @@ app.config([
     $httpProvider.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded;charset=utf-8;';
     $httpProvider.defaults.headers.put['Content-Type'] ='application/x-www-form-urlencoded;charset=utf-8;';
 
-    $httpProvider.defaults.transformResponse=function(data,headers)
-    {
-        var headersGetter =headers();
-        if(headersGetter['content-type']=='application/json' || headersGetter['content-type']=='text/json')
-        {
-            var dataJson=JSON.parse(data);
-            if(dataJson.hasOwnProperty('data'))
-            {
-                dataJson= dataJson.data;
-            }
-
-            return dataJson;
-        }
-        return data;
-    }
+    $httpProvider.defaults.transformResponse=appConfigProvider.config.utils.transfomrResponse;
     $routeProvider
         .when('/login',{
                 templateUrl:'build/views/login.html',
@@ -114,7 +117,7 @@ app.config([
         baseUrl: appConfigProvider.config.baseUrl,
         clientId: 'appid1',
         clientSecret: 'secret', // optional
-        grantPath: 'oauth/access_token',
+        grantPath: 'oauth/access_token'
        // revokePath: '/oauth2/revoke'
     });
     OAuthTokenProvider.configure({
