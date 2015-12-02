@@ -98,7 +98,7 @@ app.config([
             templateUrl:'build/views/project/edit.html',
             controller:'ProjectEditController'
         })
-        .when('/project/:id/remove',{
+        .when('/projects/:id/remove',{
             templateUrl:'build/views/project/remove.html',
             controller:'ProjectRemoveController'
         })

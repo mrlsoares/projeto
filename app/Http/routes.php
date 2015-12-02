@@ -45,7 +45,7 @@
 
         Route::group(['prefix' => 'project'],function()
         {
-           // Route::resource('','ProjectController',['except'=>['edit','create']]);
+           //Route::resource('','ProjectController',['except'=>['edit','create']]);
 
             Route::get('{id}/note', 'ProjectNoteController@index');
             Route::post('{id}/note', 'ProjectNoteController@store');
